@@ -11,4 +11,6 @@ public class Properties {
     public final static String DB_BASE_URL = "F:\\programming\\Hillel school\\projects\\independed_work\\Goods\\database\\";
     public final static String DB_NAME = "goods.db";
     public final static String TABLE_NAME = "goods";
+    public final static String [] TABLE_COLUMNS = {"title", "manufacturer", "description", "price"};
+    public final static String COLUMNS = "title, manufacturer, description, price";
 }

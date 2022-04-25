@@ -14,7 +14,7 @@ import static utils.TextColour.*;
 
 public class RWGoods {
 
-    public static Optional<Product> wright(Product product, String sqlQuery){
+    public static Optional<Product> write(Product product, String sqlQuery){
         Optional<Product> result = Optional.empty();
         try (Statement stmt = getConnection().createStatement()){
             try{
@@ -33,18 +33,18 @@ public class RWGoods {
     }
 
     public static List<Product> read(String sqlQuery){
-        List<Product> plants = new ArrayList<>();
+        List<Product> goods = new ArrayList<>();
         try(Statement stmt = getConnection().createStatement()){
             try(ResultSet rs = stmt.executeQuery(sqlQuery)){
                 while(rs.next()){
-                    plants.add(new Product(
+                    goods.add(new Product(
                             rs.getString("title"),
                             rs.getString("manufacturer"),
                             rs.getString("description"),
                             rs.getDouble("price")
                     ));
                 }
-                return plants;
+                return goods;
             }catch (SQLException ex){
                 System.out.println(ANSI_RED + "Didn't get result because: " + ex.getMessage());
                 return null;
