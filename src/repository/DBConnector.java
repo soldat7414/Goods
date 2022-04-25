@@ -7,7 +7,9 @@ import java.sql.SQLException;
 
 public class DBConnector {
 
-    public static Connection connect() {
+    private static Connection connection;
+
+    private static Connection connect() {
         String dbDriver = Properties.DB_DRIVER;
         String dbBaseUrl = Properties.DB_BASE_URL;
         String dbName = Properties.DB_NAME;
@@ -19,5 +21,12 @@ public class DBConnector {
             System.out.println(e.getMessage());
         }
         return conn;
+    }
+
+    public static Connection getConnection(){
+        if(connection == null){
+            connection = connect();
+        }
+        return connection;
     }
 }
