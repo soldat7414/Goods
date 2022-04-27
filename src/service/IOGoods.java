@@ -1,12 +1,10 @@
 package service;
 
-import entity.Product;
 import exceptions.EmptyInputException;
 import exceptions.NotNumberException;
 
 import java.util.Scanner;
 
-import static utils.TextColour.ANSI_GREEN;
 import static utils.TextColour.ANSI_RED;
 
 /**
@@ -77,20 +75,6 @@ public class IOGoods {
             }
         } while (result < 1);
         return result;
-    }
-
-
-    public static Product getProduct(Scanner scanner) {
-
-        System.out.print(ANSI_GREEN + "Enter title: ");
-        String title = getStr(scanner);
-        System.out.print("Enter manufacturer: ");
-        String manufacturer = getStr(scanner);
-        System.out.print("Enter description: ");
-        String description = getStr(scanner);
-        System.out.print("Enter price: ");
-        double price = getDouble(scanner);
-        return new Product(title, manufacturer, description, price);
     }
 }
 

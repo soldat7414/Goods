@@ -13,9 +13,9 @@ import java.util.Optional;
  * @version 1.0.0
  */
 
-public class WriteToDb {
+public class WriteToDb{
 
-    String sqlQuery;
+    String sqlQuery = "";
 
     /**
      * method to save the product in the database
@@ -27,14 +27,14 @@ public class WriteToDb {
     public Optional<Product> save(Product product) throws AlreadyExistException{
         Optional<Product> productDb;
         try{
-            productDb = GetFromDb.getByTitle(product.getTitle());
+            productDb = new GetFromDb().getByTitle(product.getTitle());
             if(productDb.isPresent()) throw new AlreadyExistException("The product with same title " +
                     "already exist in the database:", productDb.get());
-        }catch (NotFoundException ex){  }
+        }catch (NotFoundException ignored){  }
 
         sqlQuery = "INSERT INTO " + Properties.TABLE_NAME + " (" + Properties.COLUMNS + ") " +
-                "VALUES ('" + product.getTitle() + "', '" + "', '" + product.getManufacturer() + "', '" +
-                "', '" + product.getDescription() + "', '" + product.getPrice() + "')";
+                "VALUES ('" + product.getTitle() + "', '" + product.getManufacturer() + "', '" +
+                product.getDescription() + "', '" + product.getPrice() + "')";
         return RWGoods.write(product, sqlQuery);
     }
 
@@ -46,7 +46,7 @@ public class WriteToDb {
      * @throws NotFoundException in case if database don't contains any product with given title
      */
     public Optional<Product> editByTitle(Product product, String title) throws NotFoundException{
-        Optional<Product> productDb = GetFromDb.getByTitle(title);
+        Optional<Product> productDb = new GetFromDb().getByTitle(title);
         sqlQuery = "UPDATE " + Properties.TABLE_NAME + " SET title = '" + product.getTitle() +
                 "', manufacturer = '" + product.getManufacturer() + "', description = '" + product.getDescription() +
                 "', price = '" + product.getPrice() + "' WHERE title = '" + title + "'";
@@ -60,7 +60,7 @@ public class WriteToDb {
      * @throws NotFoundException in case if database don't contains any product with given title
      */
     public String delete(String title) throws NotFoundException{
-        Optional<Product> productDb = GetFromDb.getByTitle(title);
+        Optional<Product> productDb = new GetFromDb().getByTitle(title);
         sqlQuery = "DELETE FROM " + Properties.TABLE_NAME + " WHERE title = '" + title + "'";
         RWGoods.write(new Product(title, "","",0), sqlQuery);
         return title;

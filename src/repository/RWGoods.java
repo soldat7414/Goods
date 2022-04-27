@@ -14,29 +14,29 @@ import static utils.TextColour.*;
 
 public class RWGoods {
 
-    public static Optional<Product> write(Product product, String sqlQuery){
+    public static Optional<Product> write(Product product, String sqlQuery) {
         Optional<Product> result = Optional.empty();
-        try (Statement stmt = getConnection().createStatement()){
-            try{
+        try (Statement stmt = getConnection().createStatement()) {
+            try {
                 stmt.executeUpdate(sqlQuery);
                 System.out.println(ANSI_GREEN + "Row added");
                 result = Optional.of(product);
                 return result;
-            } catch (SQLException ex){
+            } catch (SQLException ex) {
                 System.out.println(ANSI_RED + "row didn't add because: " + ex.getMessage());
-                return result ;
+                return result;
             }
-        } catch (SQLException exc){
+        } catch (SQLException exc) {
             System.out.println(ANSI_RED + "statement didn't create because: " + exc.getMessage());
             return result;
         }
     }
 
-    public static List<Product> read(String sqlQuery){
+    public static List<Product> read(String sqlQuery) {
         List<Product> goods = new ArrayList<>();
-        try(Statement stmt = getConnection().createStatement()){
-            try(ResultSet rs = stmt.executeQuery(sqlQuery)){
-                while(rs.next()){
+        try (Statement stmt = getConnection().createStatement()) {
+            try (ResultSet rs = stmt.executeQuery(sqlQuery)) {
+                while (rs.next()) {
                     goods.add(new Product(
                             rs.getString("title"),
                             rs.getString("manufacturer"),
@@ -45,11 +45,11 @@ public class RWGoods {
                     ));
                 }
                 return goods;
-            }catch (SQLException ex){
+            } catch (SQLException ex) {
                 System.out.println(ANSI_RED + "Didn't get result because: " + ex.getMessage());
                 return null;
             }
-        }catch (SQLException exc){
+        } catch (SQLException exc) {
             System.out.println(ANSI_RED + "statement didn't create because: " + exc.getMessage());
             return null;
         }

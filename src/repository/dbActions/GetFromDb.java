@@ -14,7 +14,7 @@ import static repository.RWGoods.read;
  * @version 1.0.0
  */
 
-public class GetFromDb {
+public class GetFromDb{
 
     static String sqlQuery;
 
@@ -22,8 +22,8 @@ public class GetFromDb {
      * method to get all goods from the database
      * @return List<Product> with all entries or null in case the connection was failed
      */
-    public static List<Product> getAll(){
-        sqlQuery = "SELECT " + Properties.COLUMNS + " FROM " + Properties.TABLE_NAME;
+    public List<Product> getAll(){
+        sqlQuery = "SELECT " + Properties.COLUMNS + " FROM " + Properties.TABLE_NAME + " ORDER BY id DESC";
         return read(sqlQuery);
     }
 
@@ -33,7 +33,7 @@ public class GetFromDb {
      * @return Optional with a product if it was found, and empty Optional in all other cases
      * @throws NotFoundException in case if database don't contains any product with given title
      */
-    public static Optional<Product> getByTitle(String title) throws NotFoundException {
+    public Optional<Product> getByTitle(String title) throws NotFoundException {
         Optional<Product> product = Optional.empty();
         sqlQuery = "SELECT " + Properties.COLUMNS + " FROM " + Properties.TABLE_NAME +
                 " WHERE title = '" + title + "'";
