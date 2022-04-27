@@ -1,9 +1,13 @@
-import static utils.TextColour.ANSI_RED;
-import static utils.TextColour.ANSI_YELLOW;
+import controller.GoodsController;
+
+/**
+ * @author Ihor Soldatenko
+ * @version 1.0.0
+ */
 
 public class GoodsApp {
 
     public static void main(String[] args) {
-        System.out.println(ANSI_YELLOW + "yellow" + ANSI_RED + "red");
+        GoodsController.run();
     }
 }
