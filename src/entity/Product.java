@@ -1,5 +1,10 @@
 package entity;
 
+/**
+ * @author Ihor Soldatenko
+ * @version 1.0.0
+ */
+
 public class Product {
 
     private String title;
@@ -44,5 +49,10 @@ public class Product {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%-20s%-20s%-10s%-40s%n", "| " + title, "| " + manufacturer, "| " + price, "| " + description);
     }
 }
