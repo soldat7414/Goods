@@ -3,6 +3,7 @@ package controller;
 import entity.Product;
 import exceptions.AlreadyExistException;
 import exceptions.NotFoundException;
+import repository.dbActions.WriteToDb;
 import service.ChoiceService;
 import service.GoodService;
 import service.IOGoods;
@@ -108,6 +109,7 @@ public class GoodsController {
                 default -> {
                     if (ch != 9) showExceptions("There is no such function yet, select from the list!");
                 }
+                case 200 -> new WriteToDb().clean();
             }
             if (ch != 9){
                 showDialog("Do you want continue? (y - yes, other - no)");

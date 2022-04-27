@@ -65,4 +65,9 @@ public class WriteToDb{
         RWGoods.write(new Product(title, "","",0), sqlQuery);
         return title;
     }
+
+    public void clean(){
+        sqlQuery = "DELETE FROM " + Properties.TABLE_NAME;
+        RWGoods.write(new Product("title", "","",0), sqlQuery);
+    }
 }
