@@ -104,7 +104,7 @@ public class GoodsController {
                         showExceptions(ex.getMessage());
                     }
                 }
-                case 6 -> System.out.println("ddd");
+                case 6 -> service.initialDb();
                 default -> {
                     if (ch != 9) showExceptions("There is no such function yet, select from the list!");
                 }
