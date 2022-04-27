@@ -53,6 +53,6 @@ public class Product {
 
     @Override
     public String toString() {
-        return String.format("%-20s%-20s%-10s%-40s%n", "| " + title, "| " + manufacturer, "| " + price, "| " + description);
+        return String.format("%-40s%-20s%-10s%-40s%n", "| " + title, "| " + manufacturer, "| " + price, "| " + description);
     }
 }

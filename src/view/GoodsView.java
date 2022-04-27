@@ -35,7 +35,7 @@ public class GoodsView {
     public static void showGoods(String goods, String title){
 
         System.out.println(ANSI_BLUE + "============================ " + title + " ============================");
-        String header = String.format(ANSI_PURPLE + "%-20s%-20s%-10s%-40s%n", "| Title", "| Manufacturer", "| Price", "| Description");
+        String header = String.format(ANSI_PURPLE + "%-40s%-20s%-10s%-40s%n", "| Title", "| Manufacturer", "| Price", "| Description");
         header = "\033[1m" + header + "\033[0m";
         System.out.print(header);
         System.out.println(ANSI_BLUE + goods);
